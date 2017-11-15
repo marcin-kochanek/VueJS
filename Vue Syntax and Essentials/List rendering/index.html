@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - List Rendering</title>
+    <style>
+        #v-for-object,
+        #v-for-array {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            color: #2c3e50;
+            margin: 30px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <!--
+    <ul id='v-for-array'>
+        <li v-for='color of colors' v-if='color.primary'>
+            {{ color.text }}
+        </li>
+    </ul>
+    -->
+    <ul id='v-for-array'>
+        <li v-for='(color, index) in colors' v-if='color.primary'>
+            Number {{index + 1}}: {{ color.text }}
+        </li>
+    </ul>
+    <!--
+    <ul id='v-for-object'>
+        <li v-for='value in object'>
+            {{ value }}
+        </li>
+    </ul>
+    <ul id='v-for-object'>
+        <li v-for='(value, key) in object'>
+            {{key}}: {{ value }}
+        </li>
+    </ul>
+    -->
+    <ul id='v-for-object'>
+        <li v-for='(value, key, index) in object'>
+            Property no.{{index}} is {{key}} and its value: {{ value }}
+        </li>
+    </ul>
+    <script>
+        let appArray = new Vue({
+            el: '#v-for-array',
+            data: {
+                colors: [
+                    {
+                        text: 'red',
+                        primary: true
+                    },
+                    {
+                        text: 'orange',
+                        primary: false
+                    },
+                    {
+                        text: 'blue',
+                        primary: true
+                    },
+                    {
+                        text: 'white',
+                        primary: false
+                    },
+                    {
+                        text: 'black',
+                        primary: true
+                    }
+                ]
+            }
+        });
+        
+        let appObject = new Vue({
+            el: '#v-for-object',
+            data: {
+                object: {
+                    firstName: 'Marcin',
+                    secondName: 'Daniel',
+                    lastName: 'Kochanek',
+                    age: 26
+                }
+            }
+        })
+    </script>
+</body>
+</html>

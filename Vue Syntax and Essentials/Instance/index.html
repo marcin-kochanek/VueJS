@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - Instance</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            text-align: center;
+            color: #2c3e50;
+            margin: 30px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id='app'>
+        {{text}}
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                text: 'Hello Vue JS world!'
+            }
+        })
+    </script>
+</body>
+</html>

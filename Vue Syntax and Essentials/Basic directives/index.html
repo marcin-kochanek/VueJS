@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - Basic directives</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            text-align: center;
+            color: #2c3e50;
+            margin: 30px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id='app' :title='randomNum' v-show='shown'>
+        <div>Hover over me for your random number!</div>
+        <p v-pre>{{mustache tag ''}}</p> <!-- zastosowanie dyrektywy 'v-pre' spowoduje wyświetlenie pre-formatowanego tekstu. Vue.js omini wszystko, co zawiera dany element opatrzony tą dyrektywą -->
+        <p v-html='msg'></p>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                randomNum: Math.floor(Math.random() * 50) +1,
+                shown: true,
+                msg: 'Przykładowy tekst, <br> tak naprawdę o niczym.'
+            }
+        })
+    </script>
+</body>
+</html>
