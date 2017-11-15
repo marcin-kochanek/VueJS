@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - Event Handler</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            color: #2c3e50;
+            margin: 30px;
+            text-align: center;
+        }
+        
+        .vue-btn {
+            color: #fff;
+            background-color: #41B783;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id='app'>
+        <button class='vue-btn' @click='showNumber'>Show the Secret Number!</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                secretNumber: Math.floor(Math.random() * 100) + 1
+            },
+            methods: {
+                showNumber() {
+                    alert(`Here's the Secret Number: ${this.secretNumber}`);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

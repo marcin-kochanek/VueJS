@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - Components</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            color: #2c3e50;
+            margin: 10px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id='app'>
+        <my-header :user='userName'></my-header>
+    </div>
+    <script>
+        Vue.component('my-header', {
+            props: ['user'],
+            template: `<h2>Welcome, I'm {{ user }} </h2>`
+        })
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                userName: 'Marcin'
+            }
+        })
+    </script>
+</body>
+</html>

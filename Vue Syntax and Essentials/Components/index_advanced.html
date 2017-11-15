@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - Components</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            color: #2c3e50;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        .vue-btn {
+            color: #fff;
+            background-color: #41B783;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id='app'>
+        <counter :add-num='5'></counter>
+        <counter></counter>
+    </div>
+    <script>
+        let counter = Vue.component('counter', {
+            props: {
+                addNum: {
+                    type: Number,
+                    default: 1
+                }
+            },
+            template: `
+                <div>
+                    <p>Counter: {{this.count}} </p>
+                    <button class='vue-btn' @click='increment'>Click here to increment by {{ this.addNum }}</button>
+                </div>
+            `,
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                increment() {
+                    this.count += this.addNum
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

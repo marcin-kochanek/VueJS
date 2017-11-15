@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue.js - Conditional Rendering</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 30px;
+            color: #2c3e50;
+            margin: 30px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <!--
+       <div id='app'>
+       <!-- dyrektywa v-if: w przypadku 'false' element zostaje usunięty z DOMu -->
+        <template v-if='wynik'>
+            <p>Superpuchar Hiszpanii 2017</p>
+            <h2>
+                Real Madryt - FC Barcelona
+            </h2>
+            <h3>
+                5-1    
+            </h3>
+        </template>
+        <p v-else>
+             Wybrano rezygnację z wyświetlenia wyniku meczu.
+        </p>
+    </div>
+    -->
+    <div id='app'>
+       <!-- dyrektywa v-show:
+       1. nie wspiera <template> elementu, ponieważ jest on elementem abstrakcyjnym - nie jest częścią standardu HTML 
+       2. w przypadku 'false' ustawia właściwości display wartość none, więc element będzie widoczny w DOM 
+       -->
+        <div v-show='wynik'>
+            <p>Superpuchar Hiszpanii 2017</p>
+            <h2>
+                Real Madryt - FC Barcelona
+            </h2>
+            <h3>
+                5-1    
+            </h3>
+        </div>
+        <p v-show='!wynik'>
+             Wybrano rezygnację z wyświetlenia wyniku meczu.
+        </p>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                wynik: confirm('Czy wyswietlić wynik dwumeczu Real Madryt - FC Barcelona z Superpucharu Hiszpanii 2017?')
+            }
+        })
+    </script>
+</body>
+</html>
