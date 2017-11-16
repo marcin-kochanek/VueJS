@@ -9,14 +9,68 @@
     <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-    <div id='app'>
-        <h2>{{title}}</h2>
+    <div id="app">
+        <div class="row">
+            <h1>{{appTitle}}</h1>
+            <form>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="noteTitle">Note Title</label>
+                        <input class="form-control" type="text" id="noteTitle" placeholder="Enter the title for your note.." v-model="note.title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="noteText">Note text</label>
+                        <textarea class="form-control" id="noteText" placeholder="Enter the note.." v-model="note.text"></textarea>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-primary" @click="addNote">Submit</button>
+            <hr>
+            <div class="col-sm-12">
+                <div class="col-sm-3 note" v-for="(note, index) in notes">
+                    <div class="card" >
+                        <button class="close" @click="removeNote">&times;</button> <!-- use &times; HTML entity for close buttons rather than the letter X -->
+                        <div class="card-body">
+                            <h4 class="card-title">{{note.title}}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">{{note.date}}</h6>
+                            <p class="card-text">{{note.text}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         let vm = new Vue({
             el: '#app',
             data: {
-                title: 'NoteMaster'
+                appTitle: 'NoteMaster',
+                note: {
+                    title: '',
+                    text: ''
+                },
+                notes: [
+                    {
+                        title: 'Prezent dla Oli',
+                        text: 'Pierścionek',
+                        date: new Date(Date.now()).toLocaleString()
+                    }
+                ]
+            },
+            methods: {
+                addNote() {
+                    let {title, text} = this.note
+                    this.notes.push({
+                        title,
+                        text,
+                        date: new Date(Date.now()).toLocaleString()
+                    })
+                },
+                removeNote(index) {
+                    this.notes.splice(index, 1)
+                }
             }
         })
     </script>
