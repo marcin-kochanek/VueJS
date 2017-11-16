@@ -9,27 +9,41 @@
                 font-family: 'Lato', Helvetica, Arial, sans-serif;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                font-size: 30px;
+                font-size: 25px;
                 color: #2c3e50;
                 margin: 10px;
                 text-align: center;
+            }
+            
+            .vue-btn {
+                color: #fff;
+                background-color: #41B783;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                cursor: pointer;
             }
         </style>
         <script src="https://unpkg.com/vue"></script>
     </head>
     <body>
         <div id='app'>
-            <my-header :user='userName'></my-header>
+            <span>Change the text:</span>
+            <input type='text' placeholder='Put here your text..' v-model='text'>
+            <div>
+                Lowercased: {{lowerText}}
+            </div>
         </div>
         <script>
-            Vue.component('my-header', {
-                props: ['user'],
-                template: `<h2>Welcome, I'm {{ user }} </h2>`
-            })
             let vm = new Vue({
                 el: '#app',
                 data: {
-                    userName: 'Marcin'
+                    text:''
+                },
+                computed: {
+                    lowerText() {
+                        return this.text.toLowerCase();
+                    }
                 }
             })
         </script>
